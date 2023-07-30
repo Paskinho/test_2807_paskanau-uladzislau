@@ -1,0 +1,23 @@
+.line {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: center;
+    width: 100px;
+    border: solid;
+    /*border-color: black;*/
+}
+
+.slider {
+    display: flex;
+    position: relative;
+    align-content: center;
+    width: 200px;
+}
+
+.block {
+    display: flex;
+    position: relative;
+    align-content: flex-start;
+    width: 100px;
+}
