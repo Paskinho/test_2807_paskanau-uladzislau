@@ -3,7 +3,7 @@
     align-content: center;
     justify-content: center;
     position: center;
-    width: 100px;
+    width: 300px;
     border: solid;
     /*border-color: black;*/
 }
@@ -17,7 +17,11 @@
 
 .block {
     display: flex;
-    position: relative;
+    position: absolute;
     align-content: flex-start;
     width: 100px;
+}
+
+.input {
+    width: 10px;
 }

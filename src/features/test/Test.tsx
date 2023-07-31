@@ -1,37 +1,56 @@
 import {ChangeEvent, useState} from "react";
 import s from "./Test.module.css"
-import {Slider} from "@mui/material";
+import {Divider, Slider} from "@mui/material";
 
 export const Test = () => {
 
     const [value, setValue] = useState(0)
 
-    const saveDimensions = () => {
+    const input = <input className={s.input}/>
 
-        console.log("success")
+    const [inputs, setInputs] = useState([[
+        <input className={s.input}/>,
+        <input className={s.input}/>,
+        <input className={s.input}/>,
+    ]])
+
+    const addInput = () => {
+        let input = [<input/>]
+        let newInput = [...inputs,input]
+        setInputs(newInput)
     }
 
-return (
-    <div>
-        <form>
-    <div>
-        <input placeholder={'length'} value={value}
-               onChange={(event: ChangeEvent<HTMLInputElement>)=>{
-            setValue(+event.currentTarget.value)}}
-        />
-    </div>
-        {/*<div className = {s.slider}>*/}
-        {/*    <Slider onChange={saveDimensions}/>*/}
-        {/*</div>*/}
+
+    const saveDimensions = () => {
+        console.log("success")
+        return (
+            <div>
+        <input> </input>
+        </div>
+        )
+    }
+
+    return (
         <div>
-    <button onClick={saveDimensions}>Save</button>
+            <form>
+                <div>
+                    <input placeholder={'length'} value={value}
+                           onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                               setValue(+event.currentTarget.value)
+                           }}
+                    />
+                </div>
+                <div>
+                    <button onClick={addInput}>Save</button>
+                </div>
+            </form>
+            <div className={s.block}>
+                {inputs}
+            </div>
+            <div className={s.line}>
+            </div>
+            <div>
+            </div>
         </div>
-        </form>
-        <div className={s.block}>
-            {value}
-        </div>
-        <div className={s.line}>
-        </div>
-    </div>
-)
+    )
 }
