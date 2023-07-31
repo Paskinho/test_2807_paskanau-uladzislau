@@ -14,8 +14,13 @@ export const Test = () => {
         <input className={s.input}/>,
     ]])
 
-    const addInput = () => {
-        let input = [<input/>]
+    const inputLength = () => {
+        return ''
+    }
+
+
+    const addInput = (value: any) => {
+        let input = [<input className={inputLength()}/>]
         let newInput = [...inputs,input]
         setInputs(newInput)
     }
@@ -41,7 +46,7 @@ export const Test = () => {
                     />
                 </div>
                 <div>
-                    <button onClick={addInput}>Save</button>
+                    <button onClick={() => {addInput(value)}}>Save</button>
                 </div>
             </form>
             <div className={s.block}>
