@@ -25,3 +25,14 @@
 .input {
     width: 10px;
 }
+
+.backlightInput {
+}
+
+.backlightInput:focus {
+    background-color: red;
+}
+
+.backlightInput:hover {
+    cursor: pointer;
+}

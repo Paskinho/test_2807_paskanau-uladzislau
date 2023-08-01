@@ -1,46 +1,58 @@
+import React from 'react';
 import {ChangeEvent, useState} from "react";
 import s from "./Test.module.css"
 import {Divider, Slider} from "@mui/material";
+
+
+// type TestPropsType = {
+//     inputId: string
+// }
+
+
 
 export const Test = () => {
 
     const [length, setLength] = useState(0)
 
-    const input = <input className={s.input}/>
 
     const [inputs, setInputs] = useState([[
-        <input className={s.input}/>,
+        <input size={0} className={s.input}/>,
     ]])
 
-    const inputLength = () => {
-        // const [length, setLength] = useState('1')
-        // return setLength('1')
-        return ''
+    const removeBlock = () => {
+        // setInputs(inputs.filter(il => il.id))
+       console.log('delete success')
     }
 
 
-    const addInput = (value: any) => {
-        let input = [<input className={inputLength()}/>]
-        let newInput = [...inputs,input]
+    let input = [<input className={s.backlightInput}
+                        onChange={removeBlock}
+                        onDoubleClick={removeBlock}
+                        size={length}/>]
+
+
+    const addInput = (length: number) => {
+        let newInput = [...inputs, input]
         setInputs(newInput)
     }
 
 
-
     return (
         <div>
-            <form>
-                <div>
-                    <input placeholder={'length'} value={length}
-                           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                               setLength(+event.currentTarget.value)
-                           }}
-                    />
-                </div>
-                <div>
-                    <button onClick={() => {addInput(length)}}>Save</button>
-                </div>
-            </form>
+
+            <div>
+                <input placeholder={'length'} value={length}
+                       onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                           setLength(+event.currentTarget.value)
+                       }}
+                />
+            </div>
+            <div>
+                <button onClick={() => {
+                    addInput(length)
+                }}>Save
+                </button>
+            </div>
             <div className={s.block}>
                 {inputs}
             </div>
