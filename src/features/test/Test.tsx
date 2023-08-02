@@ -1,7 +1,6 @@
 import React from 'react';
 import {ChangeEvent, useState} from "react";
 import s from "./Test.module.css"
-import {Divider, inputClasses, Slider} from "@mui/material";
 import { v1 } from 'uuid';
 
 
@@ -12,7 +11,7 @@ import { v1 } from 'uuid';
 
 type InputType = {
     id: string,
-    input: string
+    input: any
 }
 
 
@@ -22,28 +21,24 @@ export const Test = () => {
 
 
     const [inputs, setInputs] = useState([
-        {id: v1(), input: <input size={0} className={s.input}/>}
-        // <input size={0} className={s.input}/>,
+        {id: v1(), input: ''}
     ])
 
 
     const removeBlock = (id: any) => {
-
         let filteredInputs = inputs.filter(input => input.id !== id)
-        setInputs(filteredInputs)
-        // delete inputs[id]
-        // delete inputs[id]
-        // setInputs(inputs.filter(il => il))
-        //  return inputs.splice(0,id) // уточнять
-        // console.log('delete success')
+
+        let deleteBlock = inputs.splice(0,inputs.indexOf(id))
+        setInputs(deleteBlock)
+        // let filteredInputs = inputs.filter(input => input.id !== id)
+        // setInputs(filteredInputs)
     }
 
 
     const fixed = ''
 
-
     const addInput = (length: number) => {
-        let input = {id: v1(), input:<input className={s.backlightInput}
+        let input: InputType = {id: v1(), input:<input className={s.backlightInput}
                             value={fixed}
                             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                                 setLength(+event.currentTarget.value)
@@ -57,7 +52,6 @@ export const Test = () => {
 
     return (
         <div>
-
             <div>
                 <input placeholder={'length'} value={length}
                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
