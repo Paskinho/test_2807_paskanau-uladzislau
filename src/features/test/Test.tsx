@@ -1,13 +1,19 @@
 import React from 'react';
 import {ChangeEvent, useState} from "react";
 import s from "./Test.module.css"
-import {Divider, Slider} from "@mui/material";
+import {Divider, inputClasses, Slider} from "@mui/material";
+import {v1} from 'uuid';
 
 
 // type TestPropsType = {
 //     inputId: string
 // }
 
+
+type InputType = {
+    id: string,
+    input: string
+}
 
 
 export const Test = () => {
@@ -16,22 +22,34 @@ export const Test = () => {
 
 
     const [inputs, setInputs] = useState([[
-        <input size={0} className={s.input}/>,
+        {id: v1(), input: <input size={0} className={s.input}/>}
+        // <input size={0} className={s.input}/>,
     ]])
 
-    const removeBlock = () => {
-        // setInputs(inputs.filter(il => il.id))
-       console.log('delete success')
+
+    const removeBlock = (id: any) => {
+
+        // let filteredInputs = inputs.filter(input => input.id != id)
+
+        // delete inputs[id]
+        // delete inputs[id]
+        // setInputs(inputs.filter(il => il))
+         return inputs.splice(0,id) // уточнять
+        // console.log('delete success')
     }
 
 
-    let input = [<input className={s.backlightInput}
-                        onChange={removeBlock}
-                        onDoubleClick={removeBlock}
-                        size={length}/>]
+    const fixed = ''
 
 
     const addInput = (length: number) => {
+        let input = [{id: v1(), input:<input className={s.backlightInput}
+                            value={fixed}
+                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                                setLength(+event.currentTarget.value)
+                            }}
+                            onDoubleClick={removeBlock}
+                            size={length}/>}]
         let newInput = [...inputs, input]
         setInputs(newInput)
     }
@@ -54,7 +72,7 @@ export const Test = () => {
                 </button>
             </div>
             <div className={s.block}>
-                {inputs}
+                [{inputs.map(inputs)}]
             </div>
             <div className={s.line}>
             </div>
