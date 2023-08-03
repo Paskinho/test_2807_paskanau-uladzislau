@@ -6,15 +6,6 @@ import { Test } from './features/test/Test';
 
 function App() {
 
-  // const [state, setState] = useState({startValue: 0, maxValue: 100, currentValue: 0})
-  //
-  // const setValue = () => {
-  //   setState({...state,currentValue: state.currentValue } )
-  // }
-  //
-  // const addBlock = () => {
-  //   let block = 100
-  // }
 
   return (
     <div className="App">

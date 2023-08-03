@@ -1,7 +1,7 @@
 import React from 'react';
 import {ChangeEvent, useState} from "react";
 import s from "./Test.module.css"
-import { v1 } from 'uuid';
+import {v1} from 'uuid';
 
 
 // type TestPropsType = {
@@ -17,37 +17,36 @@ type InputType = {
 
 export const Test = () => {
 
-    const [length, setLength] = useState(0)
+    const [length, setLength] = useState(0) // создаём стейт для длины инпуты с инициализационным значением 0
 
 
     const [inputs, setInputs] = useState([
         {id: v1(), input: ''}
-    ])
+    ]) // создаём массив инпутов
 
 
     const removeBlock = (id: any) => {
+
+        // delete inputs[id]
+        // setInputs(deleteBlock)
         let filteredInputs = inputs.filter(input => input.id !== id)
+        setInputs(filteredInputs)
+    } // удаление блока(инпута), фильтруем массив инпутов для удаление нужного, сетаем значение в стейт
 
-        let deleteBlock = inputs.splice(0,inputs.indexOf(id))
-        setInputs(deleteBlock)
-        // let filteredInputs = inputs.filter(input => input.id !== id)
-        // setInputs(filteredInputs)
-    }
-
-
-    const fixed = ''
+    const fixed = '' // переменная для того, чтобы нельзя корректировать инпут
 
     const addInput = (length: number) => {
-        let input: InputType = {id: v1(), input:<input className={s.backlightInput}
-                            value={fixed}
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                                setLength(+event.currentTarget.value)
-                            }}
-                            onDoubleClick={removeBlock}
-                            size={length}/>}
-        let newInput = [...inputs, input]
-        setInputs(newInput)
-    }
+        let input: InputType = {
+            id: v1(), input: <input className={s.backlightInput}
+                                    value={fixed} // передаём в инпут фиксируемое значение
+
+                                    onDoubleClick={removeBlock} // передаём функцию удаления блока
+                                    size={length}
+            />
+        } // новый блок
+        let newInput = [...inputs, input] // добавляем в массив новый блок
+        setInputs(newInput) //сетаем его в стейт
+    } // функция для добавления блока/инпута
 
 
     return (
@@ -57,20 +56,26 @@ export const Test = () => {
                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
                            setLength(+event.currentTarget.value)
                        }}
+                       onKeyPress={(event) => {
+                           if (event.key === "Enter") {
+                               addInput(length)
+                           }
+                       }}
                 />
             </div>
+
             <div>
-                <button onClick={() => {
-                    addInput(length)
-                }}>Save
+                <button className={s.button}
+                        onClick={() => {
+                            addInput(length)
+                        }}
+                >Save
                 </button>
             </div>
             <div className={s.block}>
                 {inputs.map(tl => tl.input)}
             </div>
             <div className={s.line}>
-            </div>
-            <div>
             </div>
         </div>
     )

@@ -36,3 +36,18 @@
 .backlightInput:hover {
     cursor: pointer;
 }
+
+.button {
+    background-color: cadetblue;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    cursor: pointer;;
+}
+
+.button:focus {
+    background-color: red;
+    color: black;
+}
